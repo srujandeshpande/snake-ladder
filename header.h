@@ -7,4 +7,4 @@ typedef struct list {
 	int node2;
 	struct list* link1;
 	struct list* link2;
-} list;
+} List;
