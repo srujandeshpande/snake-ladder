@@ -2,7 +2,6 @@
 
 void displayBoard()
 {
-	
 }
 
 void roll()
