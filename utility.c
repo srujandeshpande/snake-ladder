@@ -12,6 +12,7 @@ int roll()
 {
 	printf("Press r to roll\n");
 	getchar();
+	getchar();
 	time_t tt;
 	time(&tt);
 	int tnum = (int)tt;
@@ -24,6 +25,7 @@ int roll()
 
 void board()
 {
+	printf("---------------------------------------------------------------\n");
 	printf("Player 1 is on place %d\n",multilist[p1]->node1);
 	printf("Player 2 is on place %d\n",multilist[p2]->node1);
 	printf("Player 1's turn\n");
@@ -41,10 +43,11 @@ void board()
 }
 int move(int p, int num) 
 {
-	if(num == 0 && multilist[p]->node2 == 0)
+	if(multilist[p]->node2 == 0)
 	{
 		return 999;
 	}
+	if(num > (30 - multilist[p]->node1)) return p; 
 	if(num == 1 && multilist[p]->link1 != 0)
 	{
 		p = multilist[p]->link1;
@@ -57,7 +60,9 @@ int move(int p, int num)
 		return p;
 	}
 	while(num!=0)
+	{
 		p = multilist[p]->link2;
 		num--;
 		return move(p,num);
+	}
 }

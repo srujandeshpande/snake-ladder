@@ -44,4 +44,5 @@ int main()
 	{
 		board();
 	}
+	printf("Player %d wins!\n",winner);
 }
