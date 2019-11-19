@@ -1,4 +1,5 @@
 #include "header.h"
+#define here printf("here\n");
 
 extern List** multilist;
 extern int winner;
@@ -24,11 +25,11 @@ void dispboard()
 	printf("|12|11|10|09|08|07|\n");
 	printf("|01|02|03|04|05|06|\n");
 	printf("+-----------------+\n");
-	printf("Player 1 is on: %d after %d moves\n",multilist[p1]->node1, moves1);
-	printf("Player 2 is on: %d after %d moves\n",multilist[p2]->node1, moves2);
+	//printf("Player 1 is on: %d after %d moves\n",multilist[p1]->node1, moves1);
+	//printf("Player 2 is on: %d after %d moves\n",multilist[p2]->node1, moves2);
 }
 
-int roll(int ch)
+int roll()
 {
 	time_t tt;
 	time(&tt);
@@ -42,36 +43,41 @@ int roll(int ch)
 
 char board()
 {
+	char ch = 0;
 	system("clear");
 	dispboard();
-	printf("~~~~~~~~~~~~~~~~~~~");
+	printf("~~~~~~~~~~~~~~~~~~~\n");
+	here
 	printf("Player 1's turn\n");
-	if(!ch) char ch = getchar();
 	getchar();
-	if(ch == 'q' or ch == 's') return ch;
+	if(!ch && !ff) ch = getchar();
+	if(ch == 'q' || ch == 's') return ch;
+	if(ch == 'f') ff = 1;
 	int num = roll();
-	moves1++;
+	
+	//moves1++;
 	p1 = move(p1,num);
 	if(p1 == 999) 
 	{
 		winner = 1;
-		printf("Player 1 wins!\n",winner);
+		printf("Player 1 wins!\n");
 		return 'e';
 	} 
 	system("clear");
 	dispboard();
-	printf("~~~~~~~~~~~~~~~~~~~");
+	printf("~~~~~~~~~~~~~~~~~~~\n");
 	printf("Player 2's turn\n");
-	if(!ch) char ch = getchar();
 	getchar();
-	if(ch == 'q' or ch == 's') return ch;
+	if(!ch && !ff) ch = getchar();
+	if(ch == 'q' || ch == 's') return ch;
+	if(ch == 'f') ff = 1;
 	num = roll();
-	moves2++;
+	//moves2++;
 	p2 = move(p2,num);
 	if(p2 == 999) 
 	{
 		winner = 2;
-		printf("Player 2 wins!\n",winner);
+		printf("Player 2 wins!\n");
 		return 'e';
 	}
 }

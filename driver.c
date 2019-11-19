@@ -3,9 +3,15 @@
 List** multilist;
 int winner = 0;
 
+extern int p1;
+extern int p2;
+extern int moves1;
+extern int moves2;
+extern int ff;
+
 char board();
 int createMultiList();
-void start();
+void startgame();
 void endgame();
 
 void endgame()
@@ -17,7 +23,7 @@ void endgame()
 	free(multilist);
 }
 
-void start()
+void startgame()
 {
 	createMultiList();
 	winner = 0;
@@ -30,7 +36,7 @@ void start()
 	
 int createMultiList() 
 { 	
-	multilist = (List**)calloc(40,sizeof(List*));
+	multilist = (List**)calloc(100,sizeof(List*));
 	for(int i=0;i<100;i++) multilist[i] = NULL;
 	char *line = malloc(1024);
 	char** r = malloc(1024);
