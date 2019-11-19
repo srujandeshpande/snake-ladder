@@ -3,41 +3,12 @@
 List** multilist;
 int winner = 0;
 
-extern int p1;
-extern int p2;
-extern int moves1;
-extern int moves2;
-extern int ff;
+void roll();
+void board();
 
-char board();
-int createMultiList();
-void startgame();
-void endgame();
-
-void endgame()
-{
-	for(int i=0;i<100;i++)
-	{
-		if(!multilist[i]) free(multilist[i]);
-	}
-	free(multilist);
-}
-
-void startgame()
-{
-	createMultiList();
-	winner = 0;
-	p1 = 0;
-	p2 = 0;
-	moves1 = 0;
-	moves2 = 0;
-	ff = 0;
-}
-	
 int createMultiList() 
 { 	
-	multilist = (List**)calloc(100,sizeof(List*));
-	for(int i=0;i<100;i++) multilist[i] = NULL;
+	multilist = (List**)calloc(40,sizeof(List*));
 	char *line = malloc(1024);
 	char** r = malloc(1024);
 	char *t = malloc(1024);
@@ -68,22 +39,12 @@ int createMultiList()
 
 int main() 
 {
-	startgame();
+	createMultiList();
 	system("clear");
-	int ch;
 	//system("eog snake-and-ladders.jpg");
-	while(1) 
+	while(!winner) 
 	{
-		ch = board();
-		if(ch == 'e' || ch == 'q')
-		{
-			endgame();
-			break;
-		}
-		if(ch == 's')
-		{
-			endgame();
-			startgame();
-		}
+		board();
 	}
+	printf("Player %d wins!\n",winner);
 }
