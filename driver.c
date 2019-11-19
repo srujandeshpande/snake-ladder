@@ -40,6 +40,8 @@ int createMultiList()
 int main() 
 {
 	createMultiList();
+	system("clear");
+	//system("eog snake-and-ladders.jpg");
 	while(!winner) 
 	{
 		board();
