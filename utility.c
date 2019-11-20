@@ -1,10 +1,14 @@
 #include "header.h"
+#include <time.h>
 
 extern List** multilist;
 extern int winner;
 
 int p1 = 1;
 int p2 = 1;
+
+int moves1 = 0;
+int moves2 = 0;
 
 int ff = 0;
 int prevroll = 0;
@@ -13,9 +17,20 @@ int prevroller = 0;
 int move(int,int);
 void dispboard();
 
+void clean()
+{
+	moves1 = 0;
+	moves2 = 0;
+	p1 = 1;
+	p2 = 1;
+	ff = 0;
+	prevroll = 0;
+	prevroller = 0;
+}
+
 void dispboard()
 {
-	printf("Roll:1, Fast-Forward:2, Quit:9\n");
+	printf("Roll:1, Fast-Forward:2, Restart: 8, Quit:9\n");
 	printf("+-----------------+\n");
 	printf("|25|26|27|28|29|30|\n");
 	printf("|24|23|22|21|20|19|\n");
@@ -29,7 +44,7 @@ int roll()
 {
 	time_t tt;
 	time(&tt);
-	int tnum = (int)tt;
+	int tnum = tt;
 	srand(tnum);
 	int rnum = rand();
 	int num = rnum%6 +1;
@@ -49,7 +64,7 @@ int pboard(int p)
 	printf("~~~~~~~~~~~~~~~~~~~\n");
 	printf("Player %d's turn\n",p);
 	if(!ff) scanf("%d",&playerch);
-	if(playerch == 9) return playerch;
+	if(playerch == 9 || playerch == 8) return playerch;
 	if(playerch == 2) ff = 1;
 	int num = roll();
 	prevroll = num;
@@ -78,9 +93,9 @@ int pboard(int p)
 int board()
 {
 	int r = pboard(1);
-	if(r == 0) return 0;
+	if(r == 0 || r==8 || r==9) return r;
 	r = pboard(2);
-	if(r == 0) return 0;
+	if(r == 0 || r==8 || r==9) return r;
 }
 /*
 int board()

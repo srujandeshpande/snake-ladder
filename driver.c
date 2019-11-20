@@ -4,6 +4,13 @@ List** multilist;
 int winner = 0;
 
 int board();
+void clean();
+
+void start()
+{
+	winner = 0;
+	clean();
+}
 
 int createMultiList() 
 { 	
@@ -40,6 +47,7 @@ int main()
 {
 	int num;
 	createMultiList();
+	start();
 	system("clear");
 	//system("eog snake-and-ladders.jpg");
 	while(!winner) 
@@ -47,6 +55,12 @@ int main()
 		num = board();
 		if(num == 0) {
 			printf("Player %d wins!\n",winner);
+		}
+		if(num == 8)
+		{
+			system("clear");
+			createMultiList();
+			start();
 		}
 		if(num == 9) break;
 	}
