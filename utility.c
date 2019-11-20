@@ -7,6 +7,8 @@ int p1 = 1;
 int p2 = 1;
 
 int ff = 0;
+int prevroll = 0;
+int prevroller = 0;
 
 int move(int,int);
 void dispboard();
@@ -35,10 +37,56 @@ int roll()
 	return num;
 }
 
+int pboard(int p)
+{
+	int playerch = 0;
+	system("clear");
+	dispboard();
+	printf("Player 1 is on: %d\n",multilist[p1]->node1);
+	printf("Player 2 is on: %d\n",multilist[p2]->node1);
+	printf("~~~~~~~~~~~~~~~~~~~\n");
+	if(prevroll) printf("Player %d rolled a %d\n",prevroller,prevroll);
+	printf("~~~~~~~~~~~~~~~~~~~\n");
+	printf("Player %d's turn\n",p);
+	if(!ff) scanf("%d",&playerch);
+	if(playerch == 9) return playerch;
+	if(playerch == 2) ff = 1;
+	int num = roll();
+	prevroll = num;
+	prevroller = p;
+	if(p==1)
+	{
+		p1 = move(p1,num);
+		if(p1 == 999) 
+		{
+			winner = 1;
+			return 0;
+		}
+	}
+	if(p==2)
+	{
+		p2 = move(p2,num);
+		if(p2 == 999) 
+		{
+			winner = 2;
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int board()
+{
+	int r = pboard(1);
+	if(r == 0) return 0;
+	r = pboard(2);
+	if(r == 0) return 0;
+}
+/*
 int board()
 {
 	int playerch = 0;
-	//system("clear");
+	system("clear");
 	dispboard();
 	printf("Player 1 is on: %d\n",multilist[p1]->node1);
 	printf("Player 2 is on: %d\n",multilist[p2]->node1);
@@ -55,11 +103,14 @@ int board()
 		return 0;
 	} 
 	printf("Player 2's turn\n");
+	if(!ff) scanf("%d",&playerch);
+	if(playerch == 9) return playerch;
+	if(playerch == 2) ff = 1;
 	num = roll();
 	p2 = move(p2,num);
 	if(p2 == 999) winner = 2;
 	return playerch;
-}
+}*/
 
 int move(int p, int num) 
 {
