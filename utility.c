@@ -44,7 +44,7 @@ int roll()
 {
 	time_t tt;
 	time(&tt);
-	int tnum = tt;
+	unsigned int tnum = tt;
 	srand(tnum);
 	int rnum = rand();
 	int num = rnum%6 +1;
@@ -99,35 +99,6 @@ int board()
 	r = pboard(2);
 	if(r == 0 || r==8 || r==9) return r;
 }
-/*
-int board()
-{
-	int playerch = 0;
-	system("clear");
-	dispboard();
-	printf("Player 1 is on: %d\n",multilist[p1]->node1);
-	printf("Player 2 is on: %d\n",multilist[p2]->node1);
-	printf("~~~~~~~~~~~~~~~~~~~");
-	printf("Player 1's turn\n");
-	if(!ff) scanf("%d",&playerch);
-	if(playerch == 9) return playerch;
-	if(playerch == 2) ff = 1;
-	int num = roll();
-	p1 = move(p1,num);
-	if(p1 == 999) 
-	{
-		winner = 1;
-		return 0;
-	} 
-	printf("Player 2's turn\n");
-	if(!ff) scanf("%d",&playerch);
-	if(playerch == 9) return playerch;
-	if(playerch == 2) ff = 1;
-	num = roll();
-	p2 = move(p2,num);
-	if(p2 == 999) winner = 2;
-	return playerch;
-}*/
 
 int move(int p, int num) 
 {
