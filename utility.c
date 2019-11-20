@@ -37,7 +37,7 @@ int roll()
 
 void board()
 {
-	system("clear");
+	//system("clear");
 	dispboard();
 	printf("Player 1 is on: %d\n",multilist[p1]->node1);
 	printf("Player 2 is on: %d\n",multilist[p2]->node1);
@@ -58,26 +58,27 @@ void board()
 
 int move(int p, int num) 
 {
-	if(multilist[p]->node2 == 0)
-	{
-		return 999;
-	}
 	if(num > (30 - multilist[p]->node1)) return p; 
 	if(num == 1 && multilist[p]->link1 != 0)
 	{
 		p = multilist[p]->link1;
 		p = multilist[p]->link2;
+		if(multilist[p]->node2 == 0) return 999;
 		return p;
 	}
 	if(num == 1)
 	{
 		p = multilist[p]->link2;
+		num--;
+		if(multilist[p]->node2 == 0) return 999;
 		return p;
 	}
 	while(num!=0)
 	{
 		p = multilist[p]->link2;
 		num--;
+		if(multilist[p]->node2 == 0) return 999;
 		return move(p,num);
 	}
+	return p;
 }
