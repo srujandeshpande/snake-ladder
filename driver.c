@@ -27,8 +27,6 @@ int createMultiList()
 		t = strtok(line,",");
 		i = strtol(t,r,10);
 		multilist[i] = (List*)malloc(sizeof(List));
-		multilist[i]->p1 = 0;
-		multilist[i]->p2 = 0;
 		multilist[i]->node1 = 0;
 		multilist[i]->node2 = 0;
 		multilist[i]->link1 = 0;
@@ -64,4 +62,9 @@ int main()
 		}
 		if(num == 9) break;
 	}
+	for(int i=0;i<40;i++)
+	{
+		if(multilist[i]) free(multilist[i]);
+	}
+	free(multilist);
 }

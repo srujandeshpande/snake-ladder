@@ -7,6 +7,8 @@ extern int winner;
 int p1 = 1;
 int p2 = 1;
 
+int first  = 1;
+
 int moves1 = 0;
 int moves2 = 0;
 
@@ -26,6 +28,7 @@ void clean()
 	ff = 0;
 	prevroll = 0;
 	prevroller = 0;
+	first = 1;
 }
 
 void dispboard()
@@ -42,10 +45,14 @@ void dispboard()
 
 int roll()
 {
-	time_t tt;
-	time(&tt);
-	unsigned int tnum = tt;
-	srand(tnum);
+	if(first) 
+	{
+		time_t tt;
+		time(&tt);
+		unsigned int tnum = tt;
+		srand(tnum);
+		first = 0;
+	}
 	int rnum = rand();
 	int num = rnum%6 +1;
 	printf("You rolled a %d\n",num);
@@ -57,8 +64,8 @@ int pboard(int p)
 	int playerch = 0;
 	system("clear");
 	dispboard();
-	printf("Player 1 is on: %d after %d moves\n",multilist[p1]->node1, moves1);
-	printf("Player 2 is on: %d after %d moves\n",multilist[p2]->node1,moves2);
+	printf("%d Moves - Player 1 is on: %d\n",moves1,multilist[p1]->node1);
+	printf("%d Moves - Player 2 is on: %d\n",moves2,multilist[p2]->node1);
 	printf("~~~~~~~~~~~~~~~~~~~\n");
 	if(prevroll) printf("Player %d rolled a %d\n",prevroller,prevroll);
 	printf("~~~~~~~~~~~~~~~~~~~\n");
