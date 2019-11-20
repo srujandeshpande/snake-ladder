@@ -57,8 +57,8 @@ int pboard(int p)
 	int playerch = 0;
 	system("clear");
 	dispboard();
-	printf("Player 1 is on: %d\n",multilist[p1]->node1);
-	printf("Player 2 is on: %d\n",multilist[p2]->node1);
+	printf("Player 1 is on: %d after %d moves\n",multilist[p1]->node1, moves1);
+	printf("Player 2 is on: %d after %d moves\n",multilist[p2]->node1,moves2);
 	printf("~~~~~~~~~~~~~~~~~~~\n");
 	if(prevroll) printf("Player %d rolled a %d\n",prevroller,prevroll);
 	printf("~~~~~~~~~~~~~~~~~~~\n");
@@ -71,6 +71,7 @@ int pboard(int p)
 	prevroller = p;
 	if(p==1)
 	{
+		moves1++;
 		p1 = move(p1,num);
 		if(p1 == 999) 
 		{
@@ -80,6 +81,7 @@ int pboard(int p)
 	}
 	if(p==2)
 	{
+		moves2++;
 		p2 = move(p2,num);
 		if(p2 == 999) 
 		{
