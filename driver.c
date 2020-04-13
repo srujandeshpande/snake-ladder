@@ -3,9 +3,6 @@
 List** multilist;
 int winner = 0;
 
-int board();
-void clean();
-
 void start()
 {
 	winner = 0;

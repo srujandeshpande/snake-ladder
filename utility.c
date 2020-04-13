@@ -1,5 +1,4 @@
 #include "header.h"
-#include <time.h>
 
 extern List** multilist;
 extern int winner;
@@ -15,9 +14,6 @@ int moves2 = 0;
 int ff = 0;
 int prevroll = 0;
 int prevroller = 0;
-
-int move(int,int);
-void dispboard();
 
 void clean()
 {
